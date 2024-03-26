@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+  <div class="text-center">
+    <h2>Регистрация</h2>
+    <form method="post" class="form-signin">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="form-group">
+        {{ field }}
+        {% for error in field.errors %}
+        <p class="text-danger">{{ error }}</p>
+        {% endfor %}
+      </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Устанавливаем плейсхолдеры для полей формы
+  document.getElementById('id_username').placeholder = 'Имя пользователя';
+  document.getElementById('id_password1').placeholder = 'Пароль';
+  document.getElementById('id_password2').placeholder = 'Подтверждение пароля';
+</script>
+{% endblock %}
